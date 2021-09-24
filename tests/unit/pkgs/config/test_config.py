@@ -331,3 +331,33 @@ class TestConfig(TestCase):
         testResult = config.getChamberPidKi(0)
         self.assertEqual(testResult,
                          self.configDict['chambers'][0]['pid']['ki'])
+
+    def test_getChamberPidKdNotLoaded(self):
+        """
+        The getChamberPidKd function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberPidKd(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberPidKdOutOfRange(self):
+        """
+        The getChamberPidKd function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberPidKd(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberPidKdReturn(self):
+        """
+        The getChamberPidKd function must return
+        the PID Kd.
+        """
+        config.load()
+        testResult = config.getChamberPidKd(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['pid']['kd'])
