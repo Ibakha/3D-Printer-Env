@@ -66,7 +66,7 @@ def getChamberName(idx: int) -> str:
     return _config['chambers'][idx]['name']
 
 
-def getChamberTempsSensors(idx: int):
+def getChamberTempSensors(idx: int) -> list:
     """
     Get the designed chamber temperature sensors ID.
 
@@ -76,7 +76,69 @@ def getChamberTempsSensors(idx: int):
     Return:
         The temperature sensors ID.
     """
-    pass
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['tempSensors']
+
+
+def getChamberLedIO(idx: int) -> int:
+    """
+    Get the diseinged chamber LED IO.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The GPIO controlling the LED.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['ledIO']
+
+
+def getChamberFanIO(idx: int) -> int:
+    """
+    Get the diseinged chamber fan IO.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The GPIO controlling the fan.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['fanIO']
+
+
+def getChamberHeaterIO(idx: int) -> int:
+    """
+    Get the diseinged chamber heater IO.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The GPIO controlling the heater.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['heaterIO']
+
+
+def getChamberSamplingRate(idx: int) -> int:
+    """
+    Get the diseinged chamber heater IO.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The GPIO controlling the heater.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['samplingRate']
 
 
 class ConfigNotLoaded(Exception):

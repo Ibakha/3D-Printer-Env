@@ -116,8 +116,158 @@ class TestConfig(TestCase):
 
     def test_getChamberNameReturn(self):
         """
-        The getChamberName function must return the count of chambers.
+        The getChamberName function must return the chamber name.
         """
         config.load()
         testResult = config.getChamberName(0)
         self.assertEqual(testResult, self.configDict['chambers'][0]['name'])
+
+    def test_getChamberTempSensorsNotLoaded(self):
+        """
+        The getChamberTempSensors function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberTempSensors(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberTempSensorsOutOfRange(self):
+        """
+        The getChamberTempSensors function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberTempSensors(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberTempSensorsReturn(self):
+        """
+        The getChamberTempSensors function must return
+        the temperature sensors ID.
+        """
+        config.load()
+        testResult = config.getChamberTempSensors(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['tempSensors'])
+
+    def test_getChamberLedIoNotLoaded(self):
+        """
+        The getChamberLedIo function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberLedIO(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberLedIoOutOfRange(self):
+        """
+        The getChamberLedIo function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberLedIO(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberLedIoReturn(self):
+        """
+        The getChamberLedIo function must return
+        the LED IO.
+        """
+        config.load()
+        testResult = config.getChamberLedIO(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['ledIO'])
+
+    def test_getChamberFanIONotLoaded(self):
+        """
+        The getChamberFanIO function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberFanIO(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberFanIOOutOfRange(self):
+        """
+        The getChamberFanIO function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberFanIO(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberFanIOReturn(self):
+        """
+        The getChamberFanIO function must return
+        the fan IO.
+        """
+        config.load()
+        testResult = config.getChamberFanIO(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['fanIO'])
+
+    def test_getChamberHeaterIONotLoaded(self):
+        """
+        The getChamberHeaterIO function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberHeaterIO(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberHeaterIOOutOfRange(self):
+        """
+        The getChamberHeaterIO function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberHeaterIO(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberHeaterIOReturn(self):
+        """
+        The getChamberHeaterIO function must return
+        the heater IO.
+        """
+        config.load()
+        testResult = config.getChamberHeaterIO(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['heaterIO'])
+
+    def test_getChamberSamplingRateNotLoaded(self):
+        """
+        The getChamberSamplingRate function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberSamplingRate(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberSamplingRateOutOfRange(self):
+        """
+        The getChamberSamplingRate function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberSamplingRate(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberSamplingRateReturn(self):
+        """
+        The getChamberSamplingRate function must return
+        the sampling rate.
+        """
+        config.load()
+        testResult = config.getChamberSamplingRate(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['samplingRate'])
