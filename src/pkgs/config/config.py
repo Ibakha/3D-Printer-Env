@@ -156,6 +156,21 @@ def getChamberPidKp(idx: int) -> float:
     return _config['chambers'][idx]['pid']['kp']
 
 
+def getChamberPidKi(idx: int) -> float:
+    """
+    Get the diseinged chamber PID Ki.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The PID Ki.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['pid']['ki']
+
+
 class ConfigNotLoaded(Exception):
     """
     The ConfigNotLoaded exception.
