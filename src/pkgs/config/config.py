@@ -186,6 +186,21 @@ def getChamberPidKd(idx: int) -> float:
     return _config['chambers'][idx]['pid']['kd']
 
 
+def getChamberPidMinOut(idx: int) -> float:
+    """
+    Get the diseinged chamber PID minimum output.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The PID minimum output.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['pid']['minOut']
+
+
 class ConfigNotLoaded(Exception):
     """
     The ConfigNotLoaded exception.

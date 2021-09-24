@@ -361,3 +361,33 @@ class TestConfig(TestCase):
         testResult = config.getChamberPidKd(0)
         self.assertEqual(testResult,
                          self.configDict['chambers'][0]['pid']['kd'])
+
+    def test_getChamberPidMinOutNotLoaded(self):
+        """
+        The getChamberPidMinOut function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberPidMinOut(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberPidMinOutOutOfRange(self):
+        """
+        The getChamberPidMinOut function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberPidMinOut(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberPidMinOutReturn(self):
+        """
+        The getChamberPidMinOut function must return
+        the PID minimum output.
+        """
+        config.load()
+        testResult = config.getChamberPidMinOut(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['pid']['minOut'])
