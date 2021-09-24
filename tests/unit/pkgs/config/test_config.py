@@ -362,32 +362,32 @@ class TestConfig(TestCase):
         self.assertEqual(testResult,
                          self.configDict['chambers'][0]['pid']['kd'])
 
-    def test_getChamberPidMinOutNotLoaded(self):
+    def test_getChamberPidOutLimitsNotLoaded(self):
         """
-        The getChamberPidMinOut function must raise a ConfigNotLoaded error
+        The getChamberPidOutLimits function must raise a ConfigNotLoaded error
         if the configuration was not loaded before the call.
         """
         with self.assertRaises(config.ConfigNotLoaded) as context:
-            config.getChamberPidMinOut(0)
+            config.getChamberPidOutLimits(0)
             self.assertTrue(isinstance(context.exception,
                                        config.ConfigNotLoaded))
 
-    def test_getChamberPidMinOutOutOfRange(self):
+    def test_getChamberPidOutLimitsOutOfRange(self):
         """
-        The getChamberPidMinOut function must raise an IndexError
+        The getChamberPidOutLimits function must raise an IndexError
         if the chamber index is out of range.
         """
         with self.assertRaises(IndexError) as context:
             config.load()
-            config.getChamberPidMinOut(len(self.configDict['chambers']) + 1)
+            config.getChamberPidOutLimits(len(self.configDict['chambers']) + 1)
             self.assertTrue(isinstance(context.exception, IndexError))
 
-    def test_getChamberPidMinOutReturn(self):
+    def test_getChamberPidOutLimitsReturn(self):
         """
-        The getChamberPidMinOut function must return
-        the PID minimum output.
+        The getChamberPidOutLimits function must return
+        the PID output limits.
         """
         config.load()
-        testResult = config.getChamberPidMinOut(0)
+        testResult = config.getChamberPidOutLimits(0)
         self.assertEqual(testResult,
-                         self.configDict['chambers'][0]['pid']['minOut'])
+                         self.configDict['chambers'][0]['pid']['outLimits'])
