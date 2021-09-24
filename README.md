@@ -2,8 +2,8 @@
 Control &amp; monitor a 3D printer environment
 
 ## TODO: Change badges
-![test](https://github.com/Electronya/rc-mission-commander/actions/workflows/test.yml/badge.svg)
-[![coverage](https://codecov.io/gh/Electronya/rc-mission-commander/branch/develop/graph/badge.svg?token=WEAWM1E3HZ)](https://codecov.io/gh/Electronya/rc-mission-commander)
+![test](https://github.com/JudeBake/3D-Printer-Env/actions/workflows/test.yml/badge.svg)
+[![coverage](https://codecov.io/gh/JudeBake/3D-Printer-Env/branch/develop/graph/badge.svg?token=WEAWM1E3HZ)](https://codecov.io/gh/JudeBake/3D-Printer-Env)
 
 ## Setup
 ### Install python

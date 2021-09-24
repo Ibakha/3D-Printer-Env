@@ -1,0 +1,22 @@
+{
+    "api": {
+        "host": "localhost",
+        "port": 5000
+    },
+    "chambers": [
+        {
+            "name": "Prusa i3 mk3",
+            "tempSensors": [0, 1],
+            "ledIO": 1,
+            "fanIO": 2,
+            "heaterIO": 3,
+            "samplingRate": 0.5,
+            "pid": {
+                "kp": 100,
+                "ki": 0.1,
+                "kd": 0,
+                "outLimits": [0, 100]
+            }
+        }
+    ]
+}
