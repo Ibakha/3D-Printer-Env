@@ -93,3 +93,31 @@ class TestConfig(TestCase):
         config.load()
         testResult = config.getChambersCount()
         self.assertEqual(testResult, len(self.configDict['chambers']))
+
+    def test_getChamberNameNotLoaded(self):
+        """
+        The getChamberName function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberName(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberNameOutOfRange(self):
+        """
+        The getChamberName function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberName(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberNameReturn(self):
+        """
+        The getChamberName function must return the count of chambers.
+        """
+        config.load()
+        testResult = config.getChamberName(0)
+        self.assertEqual(testResult, self.configDict['chambers'][0]['name'])

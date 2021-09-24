@@ -51,6 +51,34 @@ def getChambersCount() -> int:
     return len(_config['chambers'])
 
 
+def getChamberName(idx: int) -> str:
+    """
+    Get the designed chamber name.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The designed chamber name.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['name']
+
+
+def getChamberTempsSensors(idx: int):
+    """
+    Get the designed chamber temperature sensors ID.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The temperature sensors ID.
+    """
+    pass
+
+
 class ConfigNotLoaded(Exception):
     """
     The ConfigNotLoaded exception.
