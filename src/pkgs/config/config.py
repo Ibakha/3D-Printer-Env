@@ -126,19 +126,34 @@ def getChamberHeaterIO(idx: int) -> int:
     return _config['chambers'][idx]['heaterIO']
 
 
-def getChamberSamplingRate(idx: int) -> int:
+def getChamberSamplingRate(idx: int) -> float:
     """
-    Get the diseinged chamber heater IO.
+    Get the diseinged chamber sampling rate.
 
     Params:
         idx:    The designed chamber index.
 
     Return:
-        The GPIO controlling the heater.
+        The sampling rate.
     """
     if _config is None:
         raise ConfigNotLoaded()
     return _config['chambers'][idx]['samplingRate']
+
+
+def getChamberPidKp(idx: int) -> float:
+    """
+    Get the diseinged chamber PID Kp.
+
+    Params:
+        idx:    The designed chamber index.
+
+    Return:
+        The PID Kp.
+    """
+    if _config is None:
+        raise ConfigNotLoaded()
+    return _config['chambers'][idx]['pid']['kp']
 
 
 class ConfigNotLoaded(Exception):

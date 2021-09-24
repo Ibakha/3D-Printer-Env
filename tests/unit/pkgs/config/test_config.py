@@ -271,3 +271,33 @@ class TestConfig(TestCase):
         testResult = config.getChamberSamplingRate(0)
         self.assertEqual(testResult,
                          self.configDict['chambers'][0]['samplingRate'])
+
+    def test_getChamberPidKpNotLoaded(self):
+        """
+        The getChamberPidKp function must raise a ConfigNotLoaded error
+        if the configuration was not loaded before the call.
+        """
+        with self.assertRaises(config.ConfigNotLoaded) as context:
+            config.getChamberPidKp(0)
+            self.assertTrue(isinstance(context.exception,
+                                       config.ConfigNotLoaded))
+
+    def test_getChamberPidKpOutOfRange(self):
+        """
+        The getChamberPidKp function must raise an IndexError
+        if the chamber index is out of range.
+        """
+        with self.assertRaises(IndexError) as context:
+            config.load()
+            config.getChamberPidKp(len(self.configDict['chambers']) + 1)
+            self.assertTrue(isinstance(context.exception, IndexError))
+
+    def test_getChamberPidKpReturn(self):
+        """
+        The getChamberPidKp function must return
+        the PID Kp.
+        """
+        config.load()
+        testResult = config.getChamberPidKp(0)
+        self.assertEqual(testResult,
+                         self.configDict['chambers'][0]['pid']['kp'])

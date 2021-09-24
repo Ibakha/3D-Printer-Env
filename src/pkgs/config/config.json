@@ -10,7 +10,14 @@
             "ledIO": 1,
             "fanIO": 2,
             "heaterIO": 3,
-            "samplingRate": 0.5
+            "samplingRate": 0.5,
+            "pid": {
+                "kp": 100,
+                "ki": 0.1,
+                "kd": 0,
+                "minOut": 0,
+                "maxOut": 100
+            }
         }
     ]
 }
