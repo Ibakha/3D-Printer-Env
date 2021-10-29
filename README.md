@@ -13,12 +13,12 @@ sudo apt update && sudo apt install -y python3 python3-pip python3-venv
 
 ### Clone the repo
 ```
-git clone git@github.com:Electronya/rc-mission-commander.git
+git clone git@github.com:Ibakha/3D-Printer-Env.git
 ```
 
 ### Create the virtual environment
 ```
-cd rc-mission-commader && python3 -m venv venv
+cd 3D-Printer-Env && python3 -m venv venv
 ```
 
 ### install dependencies
